@@ -1,0 +1,184 @@
+﻿
+﻿@model SitoCercaLavoro.Models.Utenti
+
+@{
+    ViewBag.Title = "Register";
+}
+@if(User.IsInRole("Admin")|| User.IsInRole("Admin"))
+            {
+
+
+<h2 id="Title" class="text-center">Registra un utente</h2>
+}
+else
+            {
+<h2 id="Title" class="text-center">Registra il tuo account</h2>
+            }
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class=" d-flex flex-column justify-content-center border border-dark w-50 mx-auto" id="Form">
+    <div class="d-lg-flex mx-auto">
+
+        <div class="m-3 text-white p-3 text-center rounded-3  border border-dark" style="background-color: #ae0000d4">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <i class="fa-solid fa-user"></i>
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2", @id = "Username" })
+                <div class="">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-warning" })
+                </div>
+            </div>
+            <strong class="text-warning">@ViewBag.Username</strong>
+            <div class="form-group">
+                <i class="fa-solid fa-lock"></i>
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="" >
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-warning" })
+                </div>
+            </div>
+            <div>
+                <h6 class="text-warning">@ViewBag.ErroreNumerico</h6>
+                <h6 class="text-warning">@ViewBag.ErroreCarattereSpeciale</h6>
+                <h6 class="text-warning">@ViewBag.ErroreletteraMaiuscola</h6>
+            </div>
+            @if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
+            {
+                <div class="form-group">
+                    <i class="fa-solid fa-user-tag"></i>
+                    @Html.LabelFor(model => model.Ruolo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Ruolo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ruolo, "", new { @class = "text-warning" })
+                    </div>
+                </div>
+            }
+
+
+        <div class="form-group">
+            <i class="fa-solid fa-location-dot"></i>
+            @Html.LabelFor(model => model.Indirizzo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="">
+                @Html.EditorFor(model => model.Indirizzo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Indirizzo, "", new { @class = "text-warning" })
+            </div>
+        </div>
+
+
+
+        </div>
+        <div class="m-3 text-white p-3 text-center rounded-3  border border-dark" style="background-color: #ae0000d4" id="Input">
+
+
+            <div class="form-group">
+                <i class="fa-solid fa-envelope"></i>
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-warning" })
+                </div>
+            </div>
+            <strong class="text-warning">@ViewBag.Email</strong>
+            
+            <div class="form-group">
+              
+                <div style=" white-space: nowrap ">  <i class="fa-solid fa-briefcase"></i> @Html.LabelFor(model => model.IsAzienda, htmlAttributes: new { @class = "control-label col-md-2" })</div> 
+                <div class="">
+                    
+                    si: @Html.CheckBoxFor(model => model.IsAzienda, new { htmlAttributes = new { @class = "form-control", @id = "IsAzienda" } })
+                    no: <input type="checkbox" id="Check" name="Check" value="" />
+                    @Html.ValidationMessageFor(model => model.IsAzienda, "", new { @class = "text-warning" })
+                </div>
+            </div>
+            <div class="form-group" id="CF">
+              
+                <div style=" white-space: nowrap ">  <i class="fa-regular fa-address-card"></i>  @Html.LabelFor(model => model.CodiceFiscale, htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="">
+                    @Html.EditorFor(model => model.CodiceFiscale, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CodiceFiscale, "", new { @class = "text-warning" })
+                </div>
+            </div>
+            <strong class="text-warning">@ViewBag.CodiceFiscale</strong>
+            <div class="form-group" id="PI">
+                <i class="fa-regular fa-address-card"></i>
+                <strong style=" white-space: nowrap ">  @Html.LabelFor(model => model.PartitaIva, htmlAttributes: new { @class = "control-label col-md-2" })</strong>
+                <div class="" style=" white-space: nowrap ">
+                    @Html.EditorFor(model => model.PartitaIva, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PartitaIva, "", new { @class = "text-warning" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="form-group mb-2">
+            <div class="col-md-offset-2 ">
+                <input type="submit" value="Registrati" class="btn d-flex mx-auto" style="background-color:darkorange" />
+            </div>
+        </div>
+       
+    </div>
+</div> 
+
+}
+
+
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        //All'avvio della view l'input con id IsAzienda sarà Checked
+        $("#IsAzienda").prop("checked", true);
+        //L'input CodiceFiscale sarà nascosto
+        $("#CF").hide()
+
+        $(document).ready(function () {
+            //Se IsAzienda is Checked nasconde l'input CodiceFiscale e mostra l'input PartitaIva
+            $("#IsAzienda").change(function () {
+                if ($("#IsAzienda").is(':checked')) {
+                    console.log("Azienda");
+                    $("#Check").prop("checked", false);
+                    $("#CF").hide()
+                    $("#PI").show()
+                }
+            })
+            //Altrimenti nasconde la PartitaIva e mostra Il CodiceFiscale
+            $("#Check").change(function () {
+                if ($("#Check").is(':checked')) {
+                    console.log("true");
+                    $("#CF").show()
+                    $("#PI").hide()
+                    $("#IsAzienda").prop("checked", false);
+                }
+            })
+
+
+
+            $("#Username").click(function () {
+                var username = $("#Username").val();
+                $("#Email").click(function () {
+                    var Email = $("#Username").val();
+                    $("#CodiceFiscale").click(function () {
+                        var CodiceFiscale = $("#Username").val();
+                    })
+                })
+            })
+
+            $.ajax({
+                method: "POST",
+                url: "/Home/Register",
+                data: { Username: username, Email: Email, CodiceFiscale: CodiceFiscale },
+                success: function (data) {
+                    console.log(data)
+                    filtri(data);
+                }
+            })
+        })
+    </script>
+
+}

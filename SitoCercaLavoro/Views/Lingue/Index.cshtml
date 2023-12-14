@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SitoCercaLavoro.Models.Lingue>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Profili.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lingua)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conoscenza)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profili.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lingua)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conoscenza)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdLingua }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdLingua }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdLingua })
+        </td>
+    </tr>
+}
+
+</table>

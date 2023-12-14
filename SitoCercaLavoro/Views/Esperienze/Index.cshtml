@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SitoCercaLavoro.Models.Esperienze>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Profili.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoContratto.NomeContratto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qualifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeAzienda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SedeLavoro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataInizio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataFine)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profili.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoContratto.NomeContratto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qualifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeAzienda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Localita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SedeLavoro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInizio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFine)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdEsperienza }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdEsperienza }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdEsperienza })
+        </td>
+    </tr>
+}
+
+</table>

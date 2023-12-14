@@ -1,0 +1,74 @@
+﻿@model SitoCercaLavoro.Models.Formazione
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Formazione</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profili.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profili.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Scuola)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scuola)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitoloStudio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitoloStudio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeStudio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeStudio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInizio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInizio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Votazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Votazione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdFormazione }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

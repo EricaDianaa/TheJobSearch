@@ -1,0 +1,88 @@
+﻿@model SitoCercaLavoro.Models.Esperienze
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Esperienze</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profili.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profili.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoContratto.NomeContratto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoContratto.NomeContratto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qualifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qualifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeAzienda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeAzienda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SedeLavoro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SedeLavoro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInizio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInizio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFine)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

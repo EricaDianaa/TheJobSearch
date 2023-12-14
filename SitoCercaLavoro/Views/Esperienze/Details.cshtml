@@ -1,0 +1,82 @@
+﻿@model SitoCercaLavoro.Models.Esperienze
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Esperienze</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profili.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profili.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoContratto.NomeContratto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoContratto.NomeContratto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qualifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qualifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeAzienda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeAzienda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SedeLavoro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SedeLavoro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInizio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInizio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFine)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEsperienza }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
