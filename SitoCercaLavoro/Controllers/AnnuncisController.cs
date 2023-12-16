@@ -119,6 +119,7 @@ namespace SitoCercaLavoro.Controllers
             db.Annunci.Remove(annunci);
 
             db.SaveChanges();
+         
             return RedirectToAction("Index");
         }
 
