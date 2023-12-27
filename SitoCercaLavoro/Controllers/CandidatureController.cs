@@ -65,7 +65,9 @@ namespace SitoCercaLavoro.Controllers
                         candidature.Curriculum = Curriculum1File;
                     }
                 }
-
+                string id=Request.QueryString["id"];
+                candidature.IdAnnuncio =int.Parse(id);
+               
                 db.Candidature.Add(candidature);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -4,74 +4,23 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h4 class="text-center">     @Model.Nome @Model.Cognome</h4>
 
 <div>
-    <h4>Profili</h4>
-    <hr />
+    <div class="d-flex align-items-center">
+        <img class="w-25 rounded-pill" src="~/Content/FotoProfili/@Html.DisplayFor(model => model.Foto)" alt="Alternate Text" />
+        <div class="ms-3">
+            <p> @Model.Email</p>
+            <p> @Model.Telefono</p>
+            <p> @Model.Presentazione</p>
+        </div>
+    </div>
+    <h4> @Model.Nome @Model.Cognome</h4>
+    <h5> @Model.Utenti.Username</h5>
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Utenti.Username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Utenti.Username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cognome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cognome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Presentazione)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Presentazione)
-        </dd>
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProfilo }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 
 <h4>Esperienze</h4>
 @foreach (var e in Model.Esperienze)
@@ -83,13 +32,14 @@
 {
     @Html.DisplayFor(modelItem => e.NomeStudio)
 }
-<h4>Lingue</h4>
-@foreach (var e in Model.Lingue)
-{
-    @Html.DisplayFor(modelItem => e.Lingua)
-}
 <h4>Competenze</h4>
 @foreach (var e in Model.Competenze)
 {
     @Html.DisplayFor(modelItem => e.NomeCompetenza)
+}
+
+<h4>Lingue</h4>
+@foreach (var e in Model.Lingue)
+{
+    @Html.DisplayFor(modelItem => e.Lingua)
 }

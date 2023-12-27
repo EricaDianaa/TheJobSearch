@@ -14,8 +14,8 @@ namespace SitoCercaLavoro.Controllers
         ModelDbContext db = new ModelDbContext();
         public ActionResult Index()
         {
-
-            return View();
+            var annunci = db.Annunci;
+            return View(annunci.ToList());
         }
 
         //Autentificazione
