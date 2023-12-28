@@ -41,9 +41,23 @@
         <dd>
             @Html.DisplayFor(model => model.Stato)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.idProfili)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.idProfili)
+        </dd>
     </dl>
 </div>
+@if(@ViewBag.Profili!=null){
+
+    foreach (SitoCercaLavoro.Models.Profili item in @ViewBag.Profili)
+    {
+        @item.Cognome;
+    }
+}
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.IdCandidatura }) |
     @Html.ActionLink("Back to List", "Index")

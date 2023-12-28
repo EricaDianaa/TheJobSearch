@@ -35,6 +35,16 @@ namespace SitoCercaLavoro.Controllers
             {
                 return HttpNotFound();
             }
+            //List<Profili> p = db.Profili.Where(m=>m.IdProfilo == (int)(id)).ToList();
+            //if (p != null)
+            //{
+            //   ViewBag.Profili = p;
+            //}
+            //else
+            //{
+            //   ViewBag.Profili = null;
+            //}
+         
             return View(candidature);
         }
 
@@ -47,7 +57,7 @@ namespace SitoCercaLavoro.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCandidatura,IdAnnuncio,Curriculum,Descrizione,Stato")] Candidature candidature, HttpPostedFileBase Curriculum)
+        public ActionResult Create([Bind(Include = "IdCandidatura,IdAnnuncio,Curriculum,Descrizione,Stato")] Candidature candidature, HttpPostedFileBase Curriculum,int ?id)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +75,15 @@ namespace SitoCercaLavoro.Controllers
                         candidature.Curriculum = Curriculum1File;
                     }
                 }
-                string id=Request.QueryString["id"];
-                candidature.IdAnnuncio =int.Parse(id);
-               
+                
+                if (Session["Utente"] != null)
+                {
+                candidature.idProfili = (int)Session["Utente"];
+                candidature.IdAnnuncio = (int)(id);
                 db.Candidature.Add(candidature);
                 db.SaveChanges();
+                }
+              
                 return RedirectToAction("Index");
             }
 

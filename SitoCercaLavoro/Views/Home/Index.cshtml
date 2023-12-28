@@ -25,7 +25,8 @@
         <p>
             @item.Luogo
         </p>
-        <a href="/Candidature/Create?id=@item.IdAnnuncio">Candidati</a>
+        <a href="@Url.Action("Create","Candidature", new{id=@item.IdAnnuncio})">content</a>
+        <a href="/Candidature/Create/@item.IdAnnuncio">Candidati</a>
     </div>
 }
 

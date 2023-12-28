@@ -9,6 +9,11 @@ namespace SitoCercaLavoro.Models
     [Table("Candidature")]
     public partial class Candidature
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Candidature()
+        {
+            Profili = new HashSet<Profili>();
+        }
         [Key]
         public int IdCandidatura { get; set; }
 
@@ -23,6 +28,10 @@ namespace SitoCercaLavoro.Models
         [StringLength(50)]
         public string Stato { get; set; }
 
+        public int idProfili { get; set; }
         public virtual Annunci Annunci { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Profili> Profili { get; set; }
     }
 }

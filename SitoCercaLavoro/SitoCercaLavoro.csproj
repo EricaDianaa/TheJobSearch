@@ -190,6 +190,30 @@
     <Compile Include="Migrations\202312131400428_NotNullIsAzienda.designer.cs">
       <DependentUpon>202312131400428_NotNullIsAzienda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312281102454_addrelationCandidatureProfili.cs" />
+    <Compile Include="Migrations\202312281102454_addrelationCandidatureProfili.designer.cs">
+      <DependentUpon>202312281102454_addrelationCandidatureProfili.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312281105554_provarelazione.cs" />
+    <Compile Include="Migrations\202312281105554_provarelazione.designer.cs">
+      <DependentUpon>202312281105554_provarelazione.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312281114171_relazione.cs" />
+    <Compile Include="Migrations\202312281114171_relazione.designer.cs">
+      <DependentUpon>202312281114171_relazione.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312281120402_relazionept2.cs" />
+    <Compile Include="Migrations\202312281120402_relazionept2.designer.cs">
+      <DependentUpon>202312281120402_relazionept2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312281138158_relationspt3.cs" />
+    <Compile Include="Migrations\202312281138158_relationspt3.designer.cs">
+      <DependentUpon>202312281138158_relationspt3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312281142530_relat.cs" />
+    <Compile Include="Migrations\202312281142530_relat.designer.cs">
+      <DependentUpon>202312281142530_relat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\Annunci.cs" />
@@ -328,6 +352,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\FileCurriculum\" />
     <Folder Include="Content\FotoProfili\" />
+    <Folder Include="Migrations\202312281100501_addrelationProfili\" />
+    <Folder Include="Migrations\202312281101380_addrelationProfili\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -362,6 +388,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312131400428_NotNullIsAzienda.resx">
       <DependentUpon>202312131400428_NotNullIsAzienda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312281102454_addrelationCandidatureProfili.resx">
+      <DependentUpon>202312281102454_addrelationCandidatureProfili.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312281105554_provarelazione.resx">
+      <DependentUpon>202312281105554_provarelazione.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312281114171_relazione.resx">
+      <DependentUpon>202312281114171_relazione.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312281120402_relazionept2.resx">
+      <DependentUpon>202312281120402_relazionept2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312281138158_relationspt3.resx">
+      <DependentUpon>202312281138158_relationspt3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312281142530_relat.resx">
+      <DependentUpon>202312281142530_relat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
