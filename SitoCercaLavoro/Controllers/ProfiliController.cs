@@ -30,6 +30,7 @@ namespace SitoCercaLavoro.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Profili profili = db.Profili.Find(id);
+            Session["Profilo"] = profili.IdProfilo;
             if (profili == null)
             {
                 return HttpNotFound();

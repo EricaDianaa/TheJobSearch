@@ -163,6 +163,8 @@ namespace SitoCercaLavoro.Controllers
                             //Se concidono creo il cookie per l'autentificazione 
                             FormsAuthentication.SetAuthCookie(u.Username, false);
                             Session["Utente"] = query.IdUtente;
+                            Profili p = db.Profili.FirstOrDefault(m => m.IdUtente == query.IdUtente);
+                            Session["Profilo"] = p.IdProfilo;
                             Session.Timeout = 90;
                             return RedirectToAction("Index", "Home");
                         }

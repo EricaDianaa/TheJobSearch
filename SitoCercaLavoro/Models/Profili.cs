@@ -61,6 +61,6 @@ namespace SitoCercaLavoro.Models
         public virtual ICollection<Lingue> Lingue { get; set; }
 
         public virtual Utenti Utenti { get; set; }
-        public virtual Candidature Candidature { get; set; }
+        //public virtual Candidature Candidature { get; set; }
     }
 }

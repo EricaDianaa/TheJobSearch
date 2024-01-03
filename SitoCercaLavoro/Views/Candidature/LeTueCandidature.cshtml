@@ -1,0 +1,9 @@
+﻿@model IEnumerable<SitoCercaLavoro.Models.Candidature>
+
+
+<h2>LeTueCandidature</h2>
+
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(model => item.Stato)
+}

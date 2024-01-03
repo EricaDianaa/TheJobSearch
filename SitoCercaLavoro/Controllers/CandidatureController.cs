@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime;
 using System.Web;
 using System.Web.Mvc;
 using SitoCercaLavoro.Models;
@@ -35,16 +36,16 @@ namespace SitoCercaLavoro.Controllers
             {
                 return HttpNotFound();
             }
-            //List<Profili> p = db.Profili.Where(m=>m.IdProfilo == (int)(id)).ToList();
-            //if (p != null)
-            //{
-            //   ViewBag.Profili = p;
-            //}
-            //else
-            //{
-            //   ViewBag.Profili = null;
-            //}
-         
+               var p = db.Profili.Where(m => m.IdProfilo == candidature.idProfili).ToList();
+            if (p != null ||p.Count!=0)
+            {
+                ViewBag.Profili = p;
+            }
+            else
+            {
+                ViewBag.Profili = null;
+            }
+
             return View(candidature);
         }
 
@@ -76,9 +77,9 @@ namespace SitoCercaLavoro.Controllers
                     }
                 }
                 
-                if (Session["Utente"] != null)
+                if (Session["Utente"] != null&& Session["Profilo"] != null)
                 {
-                candidature.idProfili = (int)Session["Utente"];
+                candidature.idProfili = (int)Session["Profilo"];
                 candidature.IdAnnuncio = (int)(id);
                 db.Candidature.Add(candidature);
                 db.SaveChanges();
@@ -127,6 +128,19 @@ namespace SitoCercaLavoro.Controllers
             }
             return File("~/Content/FileCurriculum/" + Curriculum1, "application / pdf");
         }
+
+        public ActionResult LeTueCandidature()
+        {
+
+            if (Session["Profilo"] != null)
+            {    
+                int id = (int)Session["Profilo"];
+                List<Candidature> c= db.Candidature.Where(m=>m.idProfili==id).Include(m => m.Annunci).ToList();
+                return View(c);
+            }
+            return View();
+        }
+
 
         protected override void Dispose(bool disposing)
         {

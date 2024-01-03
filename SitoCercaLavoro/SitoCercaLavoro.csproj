@@ -180,6 +180,7 @@
     <Compile Include="Controllers\EsperienzeController.cs" />
     <Compile Include="Controllers\FormazioneController.cs" />
     <Compile Include="Controllers\LingueController.cs" />
+    <Compile Include="Controllers\MessaggiController.cs" />
     <Compile Include="Controllers\ProfiliController.cs" />
     <Compile Include="Controllers\UtentiController.cs" />
     <Compile Include="Migrations\202312131129022_InitialDatabase.cs" />
@@ -213,6 +214,14 @@
     <Compile Include="Migrations\202312281142530_relat.cs" />
     <Compile Include="Migrations\202312281142530_relat.designer.cs">
       <DependentUpon>202312281142530_relat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312301144455_rompitutto.cs" />
+    <Compile Include="Migrations\202312301144455_rompitutto.designer.cs">
+      <DependentUpon>202312301144455_rompitutto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312301149394_riparatuttoprova.cs" />
+    <Compile Include="Migrations\202312301149394_riparatuttoprova.designer.cs">
+      <DependentUpon>202312301149394_riparatuttoprova.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -347,6 +356,7 @@
     <Content Include="Views\Utenti\Edit.cshtml" />
     <Content Include="Views\Utenti\Index.cshtml" />
     <Content Include="Views\Candidature\DownloadFile.cshtml" />
+    <Content Include="Views\Candidature\LeTueCandidature.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,6 +364,7 @@
     <Folder Include="Content\FotoProfili\" />
     <Folder Include="Migrations\202312281100501_addrelationProfili\" />
     <Folder Include="Migrations\202312281101380_addrelationProfili\" />
+    <Folder Include="Views\Messaggi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -406,6 +417,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312281142530_relat.resx">
       <DependentUpon>202312281142530_relat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312301144455_rompitutto.resx">
+      <DependentUpon>202312301144455_rompitutto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312301149394_riparatuttoprova.resx">
+      <DependentUpon>202312301149394_riparatuttoprova.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
