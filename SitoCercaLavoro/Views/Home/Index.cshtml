@@ -1,5 +1,13 @@
 ﻿@model IEnumerable<SitoCercaLavoro.Models.Annunci>
 
+<input type="text" name="Lavoro" value="" id="Lavoro" placeholder="Inserisci una professione" />
+<input type="text" name="Luogo" value="" id="Luogo" placeholder="Inserisci un luogo" />
+<input type="text" name="Contratto" value="" id="Contratto" placeholder="Inserisci tipo di contratto" />
+
+@Html.DropDownList("TipoContratto", null, htmlAttributes: new { @class = "form-control",id="TipoContratto" })
+
+<input type="text" name="Remoto" value="" id="Remoto" placeholder="Inserisci sede" />
+<button id="Button">Cerca</button>
 
 @foreach (var item in Model)
 {
@@ -30,6 +38,89 @@
     </div>
 }
 
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            function filtri(data) {
+                $("#List").html("")
+                $("#Eventi").html("");
+
+                $.each(data, function (i, e) {
+
+                    var licurrent1 = "<div class='col col-md-6 col-lg-4 col-xl-4 col-xxl-3 d-flex mx-auto justify-content-center mt-3'><main id='main'  class='d-flex flex-column justify-content-center'>" +
+                        "  <div class='card'>" +
+                        // "   <span class='badge' style='text-shadow:2px 2px 6px black;  color:darkorange'>" + e.NomeEvento + "</span>" +
+                        "<div class='text'>" +
+                        "<h2  style='text-shadow:2px 2px 6px black; color:darkorange'>" + e.NomeAnnuncio + "</h2>" +
+                        " <p class='card-text'><strong>Retribuzione:</strong>" + e.Retribuzione + "</p>" +
+                        "<p class='card-text'><strong>Descrizione:</strong>" + e.Descrizione + "</p>" +
+                        "<p class='card-text'><strong>Categoria:</strong>" + e.Categoria + "</p>" +
+                        "<p class='card-text'><strong>Sede Lavoro:</strong>" + e.SedeLavoro + "</p>" +
+                        "<p class='card-text'><strong>Luogo:</strong>" + e.Luogo + "</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</main ></div>";
+
+                    $("#Eventi").append(licurrent1)
+                })
+            }
+            function ChiamataAjax(lavoro, luogo, contratto, remoto) {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { Lavoro: lavoro, Luogo: luogo, SedeLavoro: remoto, TipoContratto: contratto },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            }
+
+            //Sezione Filtri
+            //Al click di un bottone dei filtri genero una chiamata ajax per ottenere la categoria e fare una select al db
+
+            $("#Button").click(function () {
+                console.log($("#Luogo").val(), $("#Lavoro").val(), $("#Contratto").val(), $("#Remoto").val())
+                var luogo = $("#Luogo").val();
+                var lavoro = $("#Lavoro").val();
+                var contratto = $("#TipoContratto").val();
+                var remoto = $("#Remoto").val();
+                //contratto==null
+                if (Contratto == null && luogo != null && remoto != null) {
+                    ChiamataAjax(lavoro, luogo, null, remoto)
+                    //luogo==null
+                } else if (Contratto != null && luogo == null && remoto != null) {
+                    ChiamataAjax(lavoro, null, contratto, remoto)
+                }//remto==null
+                else if (Contratto == null && luogo != null && remoto == null) {
+                    ChiamataAjax(lavoro, luogo, contratto, null)
+                }//contratto e luogo==null
+                else if (Contratto != null && luogo == null && remoto != null) {
+                    ChiamataAjax(lavoro, null, null, remoto)
+                }//contratto e remoto==null
+                else if (Contratto == null && luogo != null && remoto == null) {
+                    ChiamataAjax(lavoro, luogo, null, null)
+                }//remoto e luogo==null
+                else if (Contratto == null && luogo != null && remoto == null) {
+                    ChiamataAjax(lavoro, null, contratto, null)
+                }//solo Lavoro
+                else if (Contratto == null && luogo != null && remoto == null) {
+                    ChiamataAjax(lavoro, null, null, null)
+                }
+                else {
+                    ChiamataAjax(lavoro, luogo, contratto, remoto)
+                }
+               
+            })
+            //Rimuovo i filtri
+            $("#RemuoviFiltri").click(function () {
+                ChiamataAjax(null, null, null, null)
+            })
+        })
+    </script>
+}
 
 
 

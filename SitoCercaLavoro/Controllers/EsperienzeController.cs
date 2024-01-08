@@ -13,7 +13,7 @@ namespace SitoCercaLavoro.Controllers
     public class EsperienzeController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
-
+        [Authorize(Roles = "Admin,Azienda")]
         public ActionResult Index()
         {
             var esperienze = db.Esperienze.Include(e => e.Profili).Include(e => e.TipoContratto);
@@ -34,7 +34,7 @@ namespace SitoCercaLavoro.Controllers
             }
             return View(esperienze);
         }
-
+        [Authorize(Roles = "User")]
         public ActionResult Create()
         {
             ViewBag.IdProfilo = new SelectList(db.Profili, "IdProfilo", "Nome");
@@ -62,7 +62,7 @@ namespace SitoCercaLavoro.Controllers
             return View(esperienze);
         }
 
-        // GET: Esperienze/Edit/5
+        [Authorize(Roles = "User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,9 +79,7 @@ namespace SitoCercaLavoro.Controllers
             return View(esperienze);
         }
 
-        // POST: Esperienze/Edit/5
-        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
-        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdEsperienza,Qualifica,Contratto,NomeAzienda,Localita,SedeLavoro,DataInizio,DataFine,IdProfilo")] Esperienze esperienze)
@@ -97,7 +95,7 @@ namespace SitoCercaLavoro.Controllers
             return View(esperienze);
         }
 
-        // GET: Esperienze/Delete/5
+        [Authorize(Roles = "User")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -14,7 +14,7 @@ namespace SitoCercaLavoro.Controllers
     {
         private ModelDbContext db = new ModelDbContext();
 
-
+        [Authorize(Roles = "Admin,Azienda")]
         public ActionResult Index()
         {
             var attestatiCertificazioni = db.AttestatiCertificazioni.Include(a => a.Profili);
@@ -36,7 +36,7 @@ namespace SitoCercaLavoro.Controllers
             return View(attestatiCertificazioni);
         }
 
-
+        [Authorize(Roles = "User")]
         public ActionResult Create()
         {
             ViewBag.IdProfilo = new SelectList(db.Profili, "IdProfilo", "Nome");
@@ -63,7 +63,7 @@ namespace SitoCercaLavoro.Controllers
             return View(attestatiCertificazioni);
         }
 
-
+        [Authorize(Roles = "User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,9 +79,6 @@ namespace SitoCercaLavoro.Controllers
             return View(attestatiCertificazioni);
         }
 
-        // POST: AttestatiCertificazioni/Edit/5
-        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
-        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdCertificazione,Nome,Descrizione,IdProfilo")] AttestatiCertificazioni attestatiCertificazioni)
@@ -95,8 +92,7 @@ namespace SitoCercaLavoro.Controllers
             ViewBag.IdProfilo = new SelectList(db.Profili, "IdProfilo", "Nome", attestatiCertificazioni.IdProfilo);
             return View(attestatiCertificazioni);
         }
-
-        // GET: AttestatiCertificazioni/Delete/5
+        [Authorize(Roles = "User")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,7 +107,6 @@ namespace SitoCercaLavoro.Controllers
             return View(attestatiCertificazioni);
         }
 
-        // POST: AttestatiCertificazioni/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

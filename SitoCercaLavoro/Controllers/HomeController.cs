@@ -15,6 +15,7 @@ namespace SitoCercaLavoro.Controllers
         public ActionResult Index()
         {
             var annunci = db.Annunci;
+            ViewBag.TipoContratto = new SelectList(db.TipoContratto, "idContratto", "NomeContratto");
             return View(annunci.ToList());
         }
 
@@ -189,5 +190,71 @@ namespace SitoCercaLavoro.Controllers
             Session["Utente"] = null;
             return RedirectToAction("Index", "Home");
         }
+    public JsonResult Filtri(string Lavoro, string SedeLavoro, string Luogo,int TipoContratto)
+    {
+            List <Annunci> annunci = new List <Annunci>();
+            if (Lavoro!=""){
+
+            //Rimuovi filtri(mostra tutta la lista degli eventi completa)
+            if ((Lavoro == null || Lavoro == "") && (SedeLavoro == null || SedeLavoro == "") && (Luogo == null || Luogo == "") && TipoContratto == 1)
+            {
+                 annunci = db.Annunci.ToList();
+            }
+               //Con Contratto e Luogo = Null
+            else if (TipoContratto==1 && (Luogo == null || Luogo == "")&&(SedeLavoro!=""))
+            {
+                annunci = db.Annunci.Where(m => m.Categoria == Lavoro&&m.SedeLavoro==SedeLavoro).ToList();
+            }
+            //Con Contratto e Sedelavoro = Null
+            else if (TipoContratto==1  && (SedeLavoro == null || SedeLavoro == "") && (Luogo != ""))
+            {
+                annunci = db.Annunci.Where(m => m.Categoria == Lavoro && m.Luogo == Luogo).ToList();
+            }
+            //Con Luogo e Sedelavoro = Null
+            else if ((Luogo == null || Luogo == "" )&& (SedeLavoro == null || SedeLavoro == "") && (TipoContratto != 1))
+            {
+
+                annunci = db.Annunci.Where(m => m.Categoria == Lavoro && m.TipoContratto == TipoContratto).ToList();
+            }
+            //Con solo lavoro
+            else if ((Luogo == null|| Luogo == "" )&&( SedeLavoro == null || SedeLavoro == "" )&& TipoContratto==1)
+            {
+                annunci = db.Annunci.Where(m => m.Categoria == Lavoro).ToList();
+            }
+
+            //Con contratto = Null
+            else if (TipoContratto == 1)
+            {
+                 annunci = db.Annunci.Where(m => m.Categoria == Lavoro && m.Luogo == Luogo && m.SedeLavoro == SedeLavoro).ToList();
+            }
+            //Con SedeLavoro = Null
+            else if (SedeLavoro == null || SedeLavoro == "")
+            {
+                 annunci = db.Annunci.Where(m => m.Categoria == Lavoro && m.Luogo == Luogo && m.TipoContratto==TipoContratto).ToList();
+            }
+            //Con Luogo = Null
+            else if (Luogo == null || Luogo == "")
+            {
+                 annunci = db.Annunci.Where(m => m.Categoria == Lavoro && m.TipoContratto == TipoContratto).ToList();
+            }
+            else
+            {
+                return Json(null);
+            }
+            }
+            else {
+                return Json(null);
+            }
+
+            List<Annunci> ListAnnunci = new List<Annunci>();
+            foreach (Annunci a in annunci)
+            {
+                ListAnnunci.Add(new Annunci { IdAnnuncio = a.IdAnnuncio, NomeAnnuncio = a.NomeAnnuncio, Retribuzione = a.Retribuzione, Luogo = a.Luogo, TipoContratto = a.TipoContratto, SedeLavoro = a.SedeLavoro, Descrizione = a.Descrizione, Categoria = a.Categoria });
+            }
+            return Json(ListAnnunci);
+        }
     }
+
+
+
 }

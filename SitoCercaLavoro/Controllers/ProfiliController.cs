@@ -15,7 +15,7 @@ namespace SitoCercaLavoro.Controllers
     {
         private ModelDbContext db = new ModelDbContext();
 
-
+        [Authorize(Roles = "Admin,Azienda")]
         public ActionResult Index()
         {
             var profili = db.Profili.Include(p => p.Utenti);
@@ -38,7 +38,7 @@ namespace SitoCercaLavoro.Controllers
             return View(profili);
         }
 
-
+        [Authorize(Roles = "User")]
         public ActionResult Create()
         {
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Username");
@@ -84,7 +84,7 @@ namespace SitoCercaLavoro.Controllers
             return View(profili);
         }
 
-
+       
         public ActionResult Edit(int? id)
         {
             if (id == null)

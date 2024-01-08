@@ -14,7 +14,7 @@ namespace SitoCercaLavoro.Controllers
     {
         private ModelDbContext db = new ModelDbContext();
 
-
+        [Authorize(Roles = "Admin,Azienda")]
         public ActionResult Index()
         {
             var formazione = db.Formazione.Include(f => f.Profili);
@@ -36,7 +36,7 @@ namespace SitoCercaLavoro.Controllers
             return View(formazione);
         }
 
-
+        [Authorize(Roles = "User")]
         public ActionResult Create()
         {
             ViewBag.IdProfilo = new SelectList(db.Profili, "IdProfilo", "Nome");
@@ -62,8 +62,7 @@ namespace SitoCercaLavoro.Controllers
             ViewBag.IdProfilo = new SelectList(db.Profili, "IdProfilo", "Nome", formazione.IdProfilo);
             return View(formazione);
         }
-
-        // GET: Formazione/Edit/5
+        [Authorize(Roles = "User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,9 +78,7 @@ namespace SitoCercaLavoro.Controllers
             return View(formazione);
         }
 
-        // POST: Formazione/Edit/5
-        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
-        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdFormazione,Scuola,TitoloStudio,NomeStudio,DataInizio,DataFine,Votazione,IdProfilo")] Formazione formazione)
@@ -96,7 +93,7 @@ namespace SitoCercaLavoro.Controllers
             return View(formazione);
         }
 
-        // GET: Formazione/Delete/5
+        [Authorize(Roles = "User")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,7 +108,7 @@ namespace SitoCercaLavoro.Controllers
             return View(formazione);
         }
 
-        // POST: Formazione/Delete/5
+     
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

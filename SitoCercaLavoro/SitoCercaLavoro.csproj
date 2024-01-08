@@ -357,6 +357,7 @@
     <Content Include="Views\Utenti\Index.cshtml" />
     <Content Include="Views\Candidature\DownloadFile.cshtml" />
     <Content Include="Views\Candidature\LeTueCandidature.cshtml" />
+    <Content Include="Views\Messaggi\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,7 +365,6 @@
     <Folder Include="Content\FotoProfili\" />
     <Folder Include="Migrations\202312281100501_addrelationProfili\" />
     <Folder Include="Migrations\202312281101380_addrelationProfili\" />
-    <Folder Include="Views\Messaggi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

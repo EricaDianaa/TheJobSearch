@@ -10,6 +10,7 @@ using SitoCercaLavoro.Models;
 
 namespace SitoCercaLavoro.Controllers
 {
+    [Authorize(Roles = "Admin,Azienda")]
     public class AnnuncisController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
@@ -20,7 +21,7 @@ namespace SitoCercaLavoro.Controllers
             return View(annunci.ToList());
         }
 
-
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
