@@ -1,43 +1,61 @@
 ﻿@model IEnumerable<SitoCercaLavoro.Models.Annunci>
 
-<input type="text" name="Lavoro" value="" id="Lavoro" placeholder="Inserisci una professione" />
-<input type="text" name="Luogo" value="" id="Luogo" placeholder="Inserisci un luogo" />
-<input type="text" name="Contratto" value="" id="Contratto" placeholder="Inserisci tipo di contratto" />
+<div>
+    <input type="text" name="Lavoro" value="" id="Lavoro" placeholder="Inserisci una professione" />
+    <button id="Button"><i class="fa-solid fa-magnifying-glass"></i></button> 
+    <button id="Filtri" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-arrow-up-wide-short"></i></button>
+</div>
 
-@Html.DropDownList("TipoContratto", null, htmlAttributes: new { @class = "form-control",id="TipoContratto" })
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" >
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasTopLabel">Filtri</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body ">
 
-<input type="text" name="Remoto" value="" id="Remoto" placeholder="Inserisci sede" />
-<button id="Button">Cerca</button>
+        <input type="text" name="Luogo" value="" id="Luogo" placeholder="Inserisci un luogo" />
+        <input type="text" name="Contratto" value="" id="Contratto" placeholder="Inserisci tipo di contratto" />
+        @Html.DropDownList("TipoContratto", null, htmlAttributes: new { @class = "form-control", id = "TipoContratto" })
+        <input type="text" name="Remoto" value="" id="Remoto" placeholder="Inserisci sede" />
+        <button id="Button1"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+</div>
 
 @foreach (var item in Model)
 {
-    <div>
-        <p>
-            @item.TipoContratto1.NomeContratto
-        </p>
-        <p>
-            @item.NomeAnnuncio
-        </p>
-        <p>
-            @item.Retribuzione
-        </p>
-        <p>
-            @item.Descrizione
-        </p>
-        <p>
-            @item.Categoria
-        </p>
-        <p>
-            @item.SedeLavoro
-        </p>
-        <p>
-            @item.Luogo
-        </p>
-        <a href="@Url.Action("Create","Candidature", new{id=@item.IdAnnuncio})">content</a>
-        <a href="/Candidature/Create/@item.IdAnnuncio">Candidati</a>
+    <div  class="container">
+        <div class="row" id="Annunci">
+            <div class="col">
+
+                <h3>
+                    @item.NomeAnnuncio
+                </h3>
+                <p>
+                    @item.TipoContratto1.NomeContratto
+                </p>
+                <p>
+                    @item.Retribuzione
+                </p>
+                <p>
+                    @item.Descrizione
+                </p>
+                <p>
+                    @item.Categoria
+                </p>
+                <p>
+                    @item.SedeLavoro
+                </p>
+                <p>
+                    @item.Luogo
+                </p>
+                <a href="@Url.Action("Create","Candidature", new{id=@item.IdAnnuncio})">content</a>
+                <a href="/Candidature/Create/@item.IdAnnuncio">Candidati</a>
+            </div>
+        </div>
     </div>
 }
 
+<a href="" id="RimuoviFiltri">rimuovi filtri</a>
 @section scripts{
     <script type="text/javascript">
 
@@ -45,7 +63,7 @@
 
             function filtri(data) {
                 $("#List").html("")
-                $("#Eventi").html("");
+                $("#Annunci").html("");
 
                 $.each(data, function (i, e) {
 
@@ -53,7 +71,7 @@
                         "  <div class='card'>" +
                         // "   <span class='badge' style='text-shadow:2px 2px 6px black;  color:darkorange'>" + e.NomeEvento + "</span>" +
                         "<div class='text'>" +
-                        "<h2  style='text-shadow:2px 2px 6px black; color:darkorange'>" + e.NomeAnnuncio + "</h2>" +
+                        "<h2  style='text-shadow:2px 2px 6px black; color:black'>" + e.NomeAnnuncio + "</h2>" +
                         " <p class='card-text'><strong>Retribuzione:</strong>" + e.Retribuzione + "</p>" +
                         "<p class='card-text'><strong>Descrizione:</strong>" + e.Descrizione + "</p>" +
                         "<p class='card-text'><strong>Categoria:</strong>" + e.Categoria + "</p>" +
@@ -63,7 +81,7 @@
                         "</div>" +
                         "</main ></div>";
 
-                    $("#Eventi").append(licurrent1)
+                    $("#Annunci").append(licurrent1)
                 })
             }
             function ChiamataAjax(lavoro, luogo, contratto, remoto) {
@@ -77,11 +95,7 @@
                     }
                 })
             }
-
-            //Sezione Filtri
-            //Al click di un bottone dei filtri genero una chiamata ajax per ottenere la categoria e fare una select al db
-
-            $("#Button").click(function () {
+            function OnClick() {
                 console.log($("#Luogo").val(), $("#Lavoro").val(), $("#Contratto").val(), $("#Remoto").val())
                 var luogo = $("#Luogo").val();
                 var lavoro = $("#Lavoro").val();
@@ -112,10 +126,32 @@
                 else {
                     ChiamataAjax(lavoro, luogo, contratto, remoto)
                 }
-               
+            }
+
+            $("#Filtri").hide()
+            
+            $("#Lavoro").on('input', function (){
+                var lunghezzaImput=$(this).val().length
+                if (lunghezzaImput != 3) {
+
+                    $("#Filtri").show()
+                } else {
+                    $("#Filtri").hide()
+                }
+            })
+            
+            //Sezione Filtri
+            //Al click di un bottone dei filtri genero una chiamata ajax per ottenere la categoria e fare una select al db
+
+            $("#Button").click(function () {
+                OnClick();
+
+            })
+            $("#Button1").click(function () {
+                OnClick();
             })
             //Rimuovo i filtri
-            $("#RemuoviFiltri").click(function () {
+            $("#RimuoviFiltri").click(function () {
                 ChiamataAjax(null, null, null, null)
             })
         })

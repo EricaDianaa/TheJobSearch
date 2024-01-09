@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            function ChiamataAjax(lavoro, luogo, contratto, remoto) {
+                $.ajax({
+                    method: "POST",
+                    url: "/Admin/Ricerca",
+                    data: { Lavoro: lavoro, Luogo: luogo, SedeLavoro: remoto, TipoContratto: contratto },
+                    success: function (data) {
+                        console.log(data)
+                        $.each(data, function (i, e) {
+
+                            var licurrent1 =""
+
+                            $("#Annunci").append(licurrent1)
+                        })
+                    }
+                })
+            }
+
+        })
+    </script>
+}
