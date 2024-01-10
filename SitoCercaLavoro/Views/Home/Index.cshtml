@@ -1,33 +1,39 @@
 ﻿@model IEnumerable<SitoCercaLavoro.Models.Annunci>
 
-<div>
-    <input type="text" name="Lavoro" value="" id="Lavoro" placeholder="Inserisci una professione" />
-    <button id="Button"><i class="fa-solid fa-magnifying-glass"></i></button> 
+<link href="~/Content/StyleSheet1IndexHome.css" rel="stylesheet" />
+
+<div class="input-group mb-3" style=" flex-wrap: nowrap; align-items: center; ">
+    <input type="text" class="form-control w-100" placeholder="Cerca un lavoro" aria-label="Cerca un lavoro" aria-describedby="button-addon2" name="Lavoro" value="" id="Lavoro">
+    <button class="btn btn-outline-secondary Button" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
     <button id="Filtri" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-arrow-up-wide-short"></i></button>
 </div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" >
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasTopLabel">Filtri</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body ">
-
-        <input type="text" name="Luogo" value="" id="Luogo" placeholder="Inserisci un luogo" />
-        <input type="text" name="Contratto" value="" id="Contratto" placeholder="Inserisci tipo di contratto" />
-        @Html.DropDownList("TipoContratto", null, htmlAttributes: new { @class = "form-control", id = "TipoContratto" })
-        <input type="text" name="Remoto" value="" id="Remoto" placeholder="Inserisci sede" />
-        <button id="Button1"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <div class="offcanvas-body d-flex flex-column mt-2">
+        <h6>Inserisci un luogo</h6>
+        <input type="text" name="Luogo" value="" id="Luogo" placeholder="Inserisci un luogo" class="mt-2 form-control" />
+        <h6>Inserisci un tipo di contratto</h6>
+        @Html.DropDownList("TipoContratto", null, htmlAttributes: new { @class = "form-control mt-2 border", id = "TipoContratto" })
+        <h6>Inserisci una delle seguenti opzioni(Remoto,In sede,Ibrido)</h6>
+        <input type="text" name="Remoto" value="" id="Remoto" placeholder="Inserisci sede" class="mt-2 form-control" />
+        <a href="" id="RimuoviFiltri" class="mt-2">rimuovi filtri</a>
+        <button id="Button1" class="mt-2 btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
 </div>
+@*</div>*@
+<div class="container">
+    <div class="row" id="Annunci">
+        @foreach (var item in Model)
+        {
 
-@foreach (var item in Model)
-{
-    <div  class="container">
-        <div class="row" id="Annunci">
-            <div class="col">
+            <div class="col m-2 rounded-3 border border-primary text-center" style="background-color: #a0d3f5b0 !important;">
 
-                <h3>
+                <h3 class="mt-3 mb-3">
                     @item.NomeAnnuncio
                 </h3>
                 <p>
@@ -51,11 +57,11 @@
                 <a href="@Url.Action("Create","Candidature", new{id=@item.IdAnnuncio})">content</a>
                 <a href="/Candidature/Create/@item.IdAnnuncio">Candidati</a>
             </div>
-        </div>
-    </div>
-}
 
-<a href="" id="RimuoviFiltri">rimuovi filtri</a>
+        }
+    </div>
+</div>
+
 @section scripts{
     <script type="text/javascript">
 
@@ -129,21 +135,20 @@
             }
 
             $("#Filtri").hide()
-            
-            $("#Lavoro").on('input', function (){
-                var lunghezzaImput=$(this).val().length
-                if (lunghezzaImput != 3) {
 
+            $("#Lavoro").on('input', function () {
+                var lunghezzaImput = $(this).val().length
+                if (lunghezzaImput >= 3) {
                     $("#Filtri").show()
                 } else {
                     $("#Filtri").hide()
                 }
             })
-            
+
             //Sezione Filtri
             //Al click di un bottone dei filtri genero una chiamata ajax per ottenere la categoria e fare una select al db
 
-            $("#Button").click(function () {
+            $(".Button").click(function () {
                 OnClick();
 
             })

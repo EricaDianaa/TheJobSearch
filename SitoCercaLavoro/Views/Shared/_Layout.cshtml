@@ -9,73 +9,126 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://use.fontawesome.com/7ad89d9866.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/LayoutPageStyle.css" rel="stylesheet" />
 </head>
+
 <body>
 
     @if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
     {
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Annunci", "Index", "Annuncis", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Profili", "Index", "Profili", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Utenti", "index", "Utenti", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    </ul>
+
+        <div class="container">
+            <header class="site-header">
+                <div class="header__content--flow">
+                    <section class="header-content--left">
+                        <a href="#" class="brand-logo">
+                            <span class="logo-text">THEJOBsearch</span>
+                        </a>
+                        <button class="nav-toggle">
+                            <span class="toggle--icon"></span>
+                        </button>
+                    </section>
+                    <section class="header-content--right">
+                        <nav class="header-nav" role="navigation">
+                            <ul class="nav__list" aria-expanded="false">
+                                <li class="list-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li class="list-item">@Html.ActionLink("Annunci", "Index", "Annuncis", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li class="list-item">@Html.ActionLink("Profili", "Index", "Profili", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li class="list-item">@Html.ActionLink("Utenti", "index", "Utenti", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li class="list-item">@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                            </ul>
+                        </nav>
+                    </section>
                 </div>
-            </div>
-        </nav>
+            </header>
+        </div>
+
     }
     else if (User.IsInRole("User"))
     {
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Profilo", "Create", "Profili", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Messaggi", "index", "Messaggi", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Le tue candidature", "LeTueCandidature", "Candidature", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    </ul>
+
+
+        <div class="container">
+            <header class="site-header">
+                <div class="header__content--flow">
+                    <section class="header-content--left">
+                        <a href="#" class="brand-logo">
+                            <span class="logo-text">THEJOBsearch</span>
+                        </a>
+                        <button class="nav-toggle">
+                            <span class="toggle--icon"></span>
+                        </button>
+                    </section>
+                    <section class="header-content--right">
+                        <nav class="header-nav" role="navigation">
+                            <ul class="nav__list" aria-expanded="false">
+                                <li class="list-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li class="list-item">@Html.ActionLink("Profilo", "Create", "Profili", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li class="list-item">@Html.ActionLink("Messaggi", "index", "Messaggi", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li class="list-item">@Html.ActionLink("Candidature", "LeTueCandidature", "Candidature", new { area = "" }, new { @class = "nav-link  nav__link" })</li>
+                                <li class="list-item">@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                            </ul>
+                        </nav>
+                    </section>
                 </div>
-            </div>
-        </nav>
+            </header>
+        </div>
+
     }
     else
     {
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Registrati", "register", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    </ul>
+        <div class="container">
+            <header class="site-header">
+                <div class="header__content--flow">
+                    <section class="header-content--left">
+                        <a href="#" class="brand-logo">
+                            <span class="logo-text">THEJOBsearch</span>
+                        </a>
+                        <button class="nav-toggle">
+                            <span class="toggle--icon"></span>
+                        </button>
+                    </section>
+                    <section class="header-content--right">
+                        <nav class="header-nav" role="navigation">
+                            <ul class="nav__list" aria-expanded="false">
+                                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li>@Html.ActionLink("Registrati", "register", "Home", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                                <li>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link nav__link" })</li>
+                            </ul>
+                        </nav>
+                    </section>
                 </div>
-            </div>
-        </nav>
+            </header>
+        </div>
+
+      
     }
 
+    @section scripts{
+        <script type="text/javascript">
 
+            $(document).ready(function () {
 
+                const container = document.querySelector(".container");
+                const primaryNav = document.querySelector(".nav__list");
+                const toggleButton = document.querySelector(".nav-toggle");
+
+                toggleButton.addEventListener("click", () => {
+                    const isExpanded = primaryNav.getAttribute("aria-expanded");
+                    primaryNav.setAttribute(
+                        "aria-expanded",
+                        isExpanded === "false" ? "true" : "false"
+                    );
+                });
+
+                container.addEventListener("click", (e) => {
+                    if (!primaryNav.contains(e.target) && !toggleButton.contains(e.target)) {
+                        primaryNav.setAttribute("aria-expanded", "false");
+                    }
+                });
+            })
+        </script>
+    }
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -87,5 +140,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/JavaScriptLayoutPage.js"></script>
 </body>
 </html>
