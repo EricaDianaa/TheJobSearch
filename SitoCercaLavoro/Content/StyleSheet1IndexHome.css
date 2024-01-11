@@ -8,3 +8,18 @@ color: #09096fe6;
     margin-right:10px;
     background-color: #a6d0f580
 }
+
+.col {
+    background-color: #ffffffd4;
+    box-shadow: 5px 5px 15px 5px #000000;
+}
+.row {
+    display: flex;
+    justify-content: center;
+}
+#PContratto,#InSede {
+    background-color: #e9ded08f;
+    width: 45%;
+    border-radius: 10px;
+    border: 1px solid black
+}

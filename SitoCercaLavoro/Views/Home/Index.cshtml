@@ -4,7 +4,7 @@
 
 <div class="input-group mb-3" style=" flex-wrap: nowrap; align-items: center; ">
     <input type="text" class="form-control w-100" placeholder="Cerca un lavoro" aria-label="Cerca un lavoro" aria-describedby="button-addon2" name="Lavoro" value="" id="Lavoro">
-    <button class="btn btn-outline-secondary Button" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="btn btn-outline-success border border-white Button" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
     <button id="Filtri" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-arrow-up-wide-short"></i></button>
 </div>
 
@@ -31,31 +31,29 @@
         @foreach (var item in Model)
         {
 
-            <div class="col m-2 rounded-3 border border-primary text-center" style="background-color: #a0d3f5b0 !important;">
+            <div class=" col col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 m-2 rounded-3 border border-primary text-center">
 
                 <h3 class="mt-3 mb-3">
                     @item.NomeAnnuncio
                 </h3>
+                <div class="d-flex justify-content-between">
+                    <p id="PContratto">
+                        @item.TipoContratto1.NomeContratto
+                    </p>
+                    <p id="InSede">
+                        @item.SedeLavoro
+                    </p>
+                </div>
                 <p>
-                    @item.TipoContratto1.NomeContratto
-                </p>
-                <p>
-                    @item.Retribuzione
-                </p>
-                <p>
-                    @item.Descrizione
-                </p>
-                <p>
-                    @item.Categoria
-                </p>
-                <p>
-                    @item.SedeLavoro
+                    <strong>Retribuzione:</strong>   @item.Retribuzione € euro al mese
                 </p>
                 <p>
                     @item.Luogo
                 </p>
-                <a href="@Url.Action("Create","Candidature", new{id=@item.IdAnnuncio})">content</a>
-                <a href="/Candidature/Create/@item.IdAnnuncio">Candidati</a>
+                <a class="btn btn-primary mb-3" href="/Annunci/Details/@item.IdAnnuncio">Dettagli</a>
+                <a class="btn btn-primary mb-3" href="@Url.Action("Create","Candidature", new{id=@item.IdAnnuncio})">Candidati</a>
+              
+                @*<a href="/Candidature/Create/@item.IdAnnuncio">Candidati</a>*@
             </div>
 
         }
@@ -102,35 +100,35 @@
                 })
             }
             function OnClick() {
-                console.log($("#Luogo").val(), $("#Lavoro").val(), $("#Contratto").val(), $("#Remoto").val())
+                console.log($("#Luogo").val(), $("#Lavoro").val(), $("#TipoContratto").val(), $("#Remoto").val())
                 var luogo = $("#Luogo").val();
                 var lavoro = $("#Lavoro").val();
-                var contratto = $("#TipoContratto").val();
+                var Contratto = $("#TipoContratto").val();
                 var remoto = $("#Remoto").val();
                 //contratto==null
                 if (Contratto == null && luogo != null && remoto != null) {
                     ChiamataAjax(lavoro, luogo, null, remoto)
                     //luogo==null
                 } else if (Contratto != null && luogo == null && remoto != null) {
-                    ChiamataAjax(lavoro, null, contratto, remoto)
+                    ChiamataAjax(lavoro, null, Contratto, remoto)
                 }//remto==null
                 else if (Contratto == null && luogo != null && remoto == null) {
-                    ChiamataAjax(lavoro, luogo, contratto, null)
-                }//contratto e luogo==null
+                    ChiamataAjax(lavoro, luogo, Contratto, null)
+                }//Contratto e luogo==null
                 else if (Contratto != null && luogo == null && remoto != null) {
                     ChiamataAjax(lavoro, null, null, remoto)
-                }//contratto e remoto==null
+                }//Contratto e remoto==null
                 else if (Contratto == null && luogo != null && remoto == null) {
                     ChiamataAjax(lavoro, luogo, null, null)
                 }//remoto e luogo==null
                 else if (Contratto == null && luogo != null && remoto == null) {
-                    ChiamataAjax(lavoro, null, contratto, null)
+                    ChiamataAjax(lavoro, null, Contratto, null)
                 }//solo Lavoro
                 else if (Contratto == null && luogo != null && remoto == null) {
                     ChiamataAjax(lavoro, null, null, null)
                 }
                 else {
-                    ChiamataAjax(lavoro, luogo, contratto, remoto)
+                    ChiamataAjax(lavoro, luogo, Contratto, remoto)
                 }
             }
 

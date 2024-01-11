@@ -262,6 +262,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\ImmaginiCss\1704882105607.png" />
     <Content Include="Content\LayoutPageStyle.css" />
     <Content Include="Content\StyleSheet1IndexHome.css" />
     <Content Include="favicon.ico" />
