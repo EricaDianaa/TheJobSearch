@@ -1,5 +1,5 @@
 ## The JobSearch
-![TheJobSearch](~/Content/ImmaginiCss/TheJobSearch.png)
+![TheJobSearch](/Content/ImmaginiCss/TheJobSearch.png)
 ## Funzionalità
 Il progetto è ancora in fase di sviluppo per ora le funzionalità presenti sono
 1. Autenticazione utente, azienda e amministratore
