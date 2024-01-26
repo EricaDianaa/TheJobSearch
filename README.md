@@ -1,12 +1,6 @@
 <h1 align="center">TheJobSearch</h1>
 
-###
-
-<div align="center">
 ![TheJobSearch](https://github.com/itsroshan137/Horizontal-Swiper/assets/134380180/e0e0187c-8bda-4c88-8cc3-dbb589b2e9ab)
-</div>
-
-###
 
 <h2 align="left">Funzionalità</h2>
 
